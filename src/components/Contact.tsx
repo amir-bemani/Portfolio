@@ -1,9 +1,9 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
-import { FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaWhatsapp, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Earth = () => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -57,7 +57,26 @@ const EarthCanvas = () => {
   );
 };
 
+const MobileCanvasPlaceholder = () => (
+  <div className="flex h-full w-full items-center justify-center rounded-3xl bg-gradient-to-br from-white/5 via-white/2 to-white/10">
+    <p className="text-center text-xs text-white/40 px-4">
+      The 3D view is disabled on mobile for a smoother experience.
+    </p>
+  </div>
+);
+
 export const Contact = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(media.matches);
+
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
   return (
     <section id="contact" className="py-28 px-6 md:px-16 bg-primary relative z-10">
       <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
@@ -91,6 +110,26 @@ export const Contact = () => {
             </a>
           </div>
 
+          <div className="mt-10">
+            <p className="font-mono text-secondary text-xs tracking-widest uppercase mb-3">
+              Find me on
+            </p>
+            <div className="flex flex-wrap gap-6">
+              <a href="https://github.com/amir-bemani" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
+                <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
+                  <FaGithub size={18} />
+                </div>
+                <span className="font-mono text-sm tracking-wider">GitHub</span>
+              </a>
+              <a href="https://linkedin.com/in/amirbemani" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
+                <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
+                  <FaLinkedin size={18} />
+                </div>
+                <span className="font-mono text-sm tracking-wider">LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
           <div className='mt-12 flex flex-col gap-6'>
             <p className='text-white/70'>
               If you'd like to reach out, feel free to click one of the links above. The contact form has been removed to keep the page lightweight and fast.
@@ -104,7 +143,7 @@ export const Contact = () => {
           transition={{ duration: 0.5 }}
           className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
         >
-          <EarthCanvas />
+          {isMobile ? <MobileCanvasPlaceholder /> : <EarthCanvas />}
         </motion.div>
       </div>
     </section>
