@@ -97,19 +97,19 @@ export const Contact = () => {
           <h3 className="text-white font-black md:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] tracking-tightest leading-tight">Contact.</h3>
 
           <div className="mt-8 flex flex-wrap gap-6">
-            <a href="mailto:amir.bemani.p@gmail.com" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
+            <a href="mailto:amir@bemani.me" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
               <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
                 <FaEnvelope size={18} />
               </div>
-              <span className="font-mono text-sm tracking-wider">amir.bemani.p@gmail.com</span>
+              <span className="font-mono text-sm tracking-wider">amir@bemani.me</span>
             </a>
-            <a href="tel:+4917673539825" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
+            <a href="tel:+4915755709315" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
               <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
                 <FaPhone size={18} />
               </div>
-              <span className="font-mono text-sm tracking-wider">+49 176 73539825</span>
+              <span className="font-mono text-sm tracking-wider">+49 157 5570 9315</span>
             </a>
-            <a href="https://wa.me/4917673539825" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
+            <a href="https://wa.me/4915755709315" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
               <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
                 <FaWhatsapp size={18} />
               </div>
