@@ -1,10 +1,9 @@
-import { useRef, useState, Suspense, type ChangeEvent, type FormEvent } from "react";
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import { FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
-import { MagneticButton } from "./MagneticButton";
 
 const Earth = () => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -16,7 +15,7 @@ const Earth = () => {
   });
 
   return (
-    <Sphere ref={meshRef} args={[1, 100, 100]} scale={2.5}>
+    <Sphere ref={meshRef} args={[1, 32, 32]} scale={2.5}>
       <MeshDistortMaterial
         color="#915eff"
         attach="material"
@@ -59,31 +58,6 @@ const EarthCanvas = () => {
 };
 
 export const Contact = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    // Simulation
-    setTimeout(() => {
-      setLoading(false);
-      alert("Thank you. I will get back to you as soon as possible.");
-      setForm({ name: "", email: "", message: "" });
-    }, 2000);
-  };
-
   return (
     <section id="contact" className="py-28 px-6 md:px-16 bg-primary relative z-10">
       <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
@@ -117,57 +91,11 @@ export const Contact = () => {
             </a>
           </div>
 
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className='mt-12 flex flex-col gap-8'
-          >
-            <label className='flex flex-col'>
-              <span className='text-white font-medium mb-4'>Your Name</span>
-              <input
-                type='text'
-                name='name'
-                value={form.name}
-                onChange={handleChange}
-                placeholder="What's your good name?"
-                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-                required
-              />
-            </label>
-            <label className='flex flex-col'>
-              <span className='text-white font-medium mb-4'>Your email</span>
-              <input
-                type='email'
-                name='email'
-                value={form.email}
-                onChange={handleChange}
-                placeholder="What's your web address?"
-                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-                required
-              />
-            </label>
-            <label className='flex flex-col'>
-              <span className='text-white font-medium mb-4'>Your Message</span>
-              <textarea
-                rows={7}
-                name='message'
-                value={form.message}
-                onChange={handleChange}
-                placeholder='What you want to say?'
-                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-                required
-              />
-            </label>
-
-            <MagneticButton>
-              <button
-                type='submit'
-                className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary hover-target'
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-            </MagneticButton>
-          </form>
+          <div className='mt-12 flex flex-col gap-6'>
+            <p className='text-white/70'>
+              If you'd like to reach out, feel free to click one of the links above. The contact form has been removed to keep the page lightweight and fast.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
