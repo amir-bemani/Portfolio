@@ -66,7 +66,7 @@ export const About = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
         >
-          I'm a Data Science M.Sc. student at SRH University Heidelberg, specializing in Digital Health.
+          I'm a Data Science M.Sc. student at SRH University of Applied Sciences, Fürth/Nürnberg, specializing in Digital Health.
           With a strong background in Occupational Health & Safety, I bridge the gap between complex data analysis and robust engineering.
           I build full-stack applications and ML pipelines using modern tools like React, NestJS, and PyTorch.
         </motion.p>
