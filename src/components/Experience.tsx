@@ -21,7 +21,7 @@ const EXPERIENCES = [
   },
   {
     title: 'HSE Engineer',
-    company: 'Omran Azarestan Co.',
+    company: 'Azarestan Civil Engineering Co.',
     location: 'Tehran, Iran',
     period: 'Aug 2021 – Jul 2022',
     type: 'Full-Time · Construction',
