@@ -6,7 +6,7 @@ const PROJECTS = [
   {
     name: "Heart Disease Prediction",
     description:
-      "Evaluated Logistic Regression, KNN, SVM & Random Forest models on UCI Heart Disease data. Achieved >80% accuracy and AUC >0.85.",
+      "Evaluated Logistic Regression, KNN, SVM & Random Forest models on UCI Heart Disease data. Achieved >80% accuracy and best model ROC-AUC: 0.908 (Random Forest).",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "scikit-learn", color: "green-text-gradient" },
