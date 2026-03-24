@@ -1,149 +1,86 @@
-import { Suspense, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Preload, Sphere, MeshDistortMaterial } from "@react-three/drei";
-import * as THREE from "three";
-import { FaEnvelope, FaPhone, FaWhatsapp, FaGithub, FaLinkedin } from 'react-icons/fa';
-
-const Earth = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.005;
-    }
-  });
-
-  return (
-    <Sphere ref={meshRef} args={[1, 32, 32]} scale={2.5}>
-      <MeshDistortMaterial
-        color="#915eff"
-        attach="material"
-        distort={0.3}
-        speed={2}
-        roughness={0.5}
-      />
-    </Sphere>
-  );
-};
-
-const EarthCanvas = () => {
-  return (
-    <Canvas
-      shadows
-      frameloop='demand'
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
-      camera={{
-        fov: 45,
-        near: 0.1,
-        far: 200,
-        position: [-4, 3, 6],
-      }}
-    >
-      <Suspense fallback={null}>
-        <OrbitControls
-          autoRotate
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-        <ambientLight intensity={1} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Earth />
-        <Preload all />
-      </Suspense>
-    </Canvas>
-  );
-};
-
-const MobileCanvasPlaceholder = () => (
-  <div className="flex h-full w-full items-center justify-center rounded-3xl bg-gradient-to-br from-white/5 via-white/2 to-white/10">
-    <p className="text-center text-xs text-white/40 px-4">
-      The 3D view is disabled on mobile for a smoother experience.
-    </p>
-  </div>
-);
+import { motion } from 'framer-motion';
+import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Contact = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia('(max-width: 768px)');
-    const update = () => setIsMobile(media.matches);
-
-    update();
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
-  }, []);
+  const { t } = useLanguage();
 
   return (
-    <section id="contact" className="py-28 px-6 md:px-16 bg-primary relative z-10">
-      <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className='flex-[0.75] bg-black-100 p-8 rounded-3xl border border-white/5'
-        >
-          <p className="font-mono text-secondary text-[14px] tracking-widest uppercase mb-2">Get in touch</p>
-          <h3 className="text-white font-black md:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] tracking-tightest leading-tight">Contact.</h3>
+    <section id="contact" className="py-10 flex flex-col gap-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col gap-2"
+      >
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#915eff] font-bold">
+          {t('contact.subtitle')}
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+          {t('contact.title')}
+        </h2>
+      </motion.div>
 
-          <div className="mt-8 flex flex-wrap gap-6">
-            <a href="mailto:amir@bemani.me" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
-              <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch mt-4">
+        {/* Contact links card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="md:col-span-12 glass-card p-6 md:p-10 flex flex-col gap-6"
+        >
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight">
+              Let's build something together.
+            </h3>
+            <p className="text-white/60 text-sm md:text-base font-light max-w-2xl leading-relaxed">
+              {t('contact.description')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
+            <a href="mailto:amir@bemani.me" className="glass-card p-4 flex items-center gap-4 hover:bg-white/[0.04] cursor-pointer group">
+              <div className="w-10 h-10 rounded-xl bg-[#915eff]/10 flex items-center justify-center text-[#915eff] group-hover:scale-105 transition-transform duration-300">
                 <FaEnvelope size={18} />
               </div>
-              <span className="font-mono text-sm tracking-wider">amir@bemani.me</span>
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-white/40">Email</span>
+                <span className="text-sm font-semibold tracking-tight">amir@bemani.me</span>
+              </div>
             </a>
-            <a href="tel:+4915755709315" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
-              <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
+
+            <a href="tel:+4915755709315" className="glass-card p-4 flex items-center gap-4 hover:bg-white/[0.04] cursor-pointer group">
+              <div className="w-10 h-10 rounded-xl bg-[#915eff]/10 flex items-center justify-center text-[#915eff] group-hover:scale-105 transition-transform duration-300">
                 <FaPhone size={18} />
               </div>
-              <span className="font-mono text-sm tracking-wider">+49 157 5570 9315</span>
-            </a>
-            <a href="https://wa.me/4915755709315" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
-              <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
-                <FaWhatsapp size={18} />
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-white/40">Phone</span>
+                <span className="text-sm font-semibold tracking-tight">+49 157 55709315</span>
               </div>
-              <span className="font-mono text-sm tracking-wider">WhatsApp</span>
+            </a>
+
+            <a href="https://linkedin.com/in/amirbemani" target="_blank" rel="noreferrer" className="glass-card p-4 flex items-center gap-4 hover:bg-white/[0.04] cursor-pointer group">
+              <div className="w-10 h-10 rounded-xl bg-[#915eff]/10 flex items-center justify-center text-[#915eff] group-hover:scale-105 transition-transform duration-300">
+                <FaLinkedin size={18} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-white/40">LinkedIn</span>
+                <span className="text-sm font-semibold tracking-tight">amirbemani</span>
+              </div>
+            </a>
+
+            <a href="https://github.com/amir-bemani" target="_blank" rel="noreferrer" className="glass-card p-4 flex items-center gap-4 hover:bg-white/[0.04] cursor-pointer group">
+              <div className="w-10 h-10 rounded-xl bg-[#915eff]/10 flex items-center justify-center text-[#915eff] group-hover:scale-105 transition-transform duration-300">
+                <FaGithub size={18} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-white/40">GitHub</span>
+                <span className="text-sm font-semibold tracking-tight">amir-bemani</span>
+              </div>
             </a>
           </div>
-
-          <div className="mt-10">
-            <p className="font-mono text-secondary text-xs tracking-widest uppercase mb-3">
-              Find me on
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <a href="https://github.com/amir-bemani" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
-                <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
-                  <FaGithub size={18} />
-                </div>
-                <span className="font-mono text-sm tracking-wider">GitHub</span>
-              </a>
-              <a href="https://linkedin.com/in/amirbemani" target="_blank" rel="noreferrer" className="hover-target flex items-center gap-3 text-white/60 hover:text-[#915eff] transition-colors group">
-                <div className="w-10 h-10 rounded-full bg-tertiary flex justify-center items-center group-hover:scale-110 transition-transform">
-                  <FaLinkedin size={18} />
-                </div>
-                <span className="font-mono text-sm tracking-wider">LinkedIn</span>
-              </a>
-            </div>
-          </div>
-
-          <div className='mt-12 flex flex-col gap-6'>
-            <p className='text-white/70'>
-              If you'd like to reach out, feel free to click one of the links above. The contact form has been removed to keep the page lightweight and fast.
-            </p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
-        >
-          {isMobile ? <MobileCanvasPlaceholder /> : <EarthCanvas />}
         </motion.div>
       </div>
     </section>

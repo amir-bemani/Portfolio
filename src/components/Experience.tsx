@@ -1,113 +1,83 @@
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
-import "react-vertical-timeline-component/style.min.css";
+import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
-const EXPERIENCES = [
-  {
-    title: 'HSE Specialist',
-    company: 'Teen Dairy Co. (Damdaran)',
-    location: 'Tehran, Iran',
-    period: 'Nov 2023 – Sep 2024',
-    type: 'Full-Time · Food Production',
-    points: [
-      'Ensured ISO and 5S compliance across a large-scale food production facility with 200+ staff.',
-      'Conducted regular safety audits, risk assessments, and incident investigations.',
-      'Led staff training programs on safety protocols and hygiene procedures.',
-      'Prepared management reports and KPI dashboards for executive review.',
-    ],
-  },
-  {
-    title: 'HSE Engineer',
-    company: 'Azarestan Civil Engineering Co.',
-    location: 'Tehran, Iran',
-    period: 'Aug 2021 – Jul 2022',
-    type: 'Full-Time · Construction',
-    points: [
-      'Monitored occupational safety compliance on high-rise construction sites.',
-      'Implemented risk mitigation protocols in coordination with project engineers and site managers.',
-      'Performed regular safety inspections and reported findings to senior management.',
-    ],
-  },
-  {
-    title: 'HSE Intern — Hospital Environment',
-    company: 'Kasra Hospital',
-    location: 'Tehran, Iran',
-    period: 'Mar 2021 – Jul 2021',
-    type: 'Internship · Healthcare',
-    points: [
-      'Supported implementation of hygiene and safety protocols in a clinical hospital environment.',
-      'Assisted in risk assessments, safety inspections and compliance monitoring per healthcare regulations.',
-    ],
-  },
-];
+const ExperienceCard = ({ index }: { index: number }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { t, language } = useLanguage();
 
-const ExperienceCard = ({ experience }: { experience: typeof EXPERIENCES[0] }) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const points = t(`experience.items.${index}.points`) || [];
+
   return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid #232631" }}
-      date={experience.period}
-      iconStyle={{ background: "#383E56" }}
-      icon={
-        <div className='flex justify-center items-center w-full h-full'>
-          <div className="w-2 h-2 rounded-full bg-white"></div>
-        </div>
-      }
+    <motion.div
+      key={`${index}-${language}`}
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      initial={{ opacity: 0, rotateY: -35, scale: 0.93, y: 15 }}
+      whileInView={{ opacity: 1, rotateY: 0, scale: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: [0.215, 0.610, 0.355, 1.000], delay: index * 0.15 }}
+      className="relative flex flex-col gap-2 glass-card p-6 cursor-pointer overflow-hidden group shadow-md origin-center"
     >
-      <div>
-        <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
-        <p
-          className='text-secondary text-[16px] font-semibold'
-          style={{ margin: 0 }}
-        >
-          {experience.company}
+      <div 
+        className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(145, 94, 255, 0.12), transparent 60%)`
+        }}
+      />
+      
+      <span className="font-mono text-xs text-[#915eff] font-bold z-10">
+        {t(`experience.items.${index}.period`)}
+      </span>
+      <div className="flex flex-col z-10">
+        <h3 className="text-lg md:text-xl font-extrabold tracking-tight text-white group-hover:text-accent-gradient transition-colors duration-300">
+          {t(`experience.items.${index}.title`)}
+        </h3>
+        <p className="text-white/40 text-sm font-medium">
+          {t(`experience.items.${index}.company`)}
         </p>
       </div>
 
-      <ul className='mt-5 list-disc ml-5 space-y-2'>
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
-          >
-            {point}
-          </li>
+      <ul className="mt-3 list-disc list-inside flex flex-col gap-2 text-white/70 text-sm font-light leading-relaxed z-10">
+        {Array.isArray(points) && points.map((point: string, i: number) => (
+          <li key={i} className="pl-1"><span className="relative -left-1">{point}</span></li>
         ))}
       </ul>
-    </VerticalTimelineElement>
+    </motion.div>
   );
 };
 
 export const Experience = () => {
-  return (
-    <section id="experience" className="py-28 px-6 md:px-16 bg-[#050505] border-t border-white/5 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-           initial={{ opacity: 0, y: -20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.5 }}
-        >
-          <p className="font-mono text-secondary text-[14px] tracking-widest uppercase mb-2">What I have done so far</p>
-          <h2 className="text-white font-black md:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] tracking-tightest leading-tight">Work Experience.</h2>
-        </motion.div>
+  const { t, language } = useLanguage();
 
-        <div className='mt-20 flex flex-col'>
-          <VerticalTimeline animate={true} lineColor="rgba(255,255,255,0.05)">
-            {EXPERIENCES.map((experience, index) => (
-              <ExperienceCard
-                key={`experience-${index}`}
-                experience={experience}
-              />
-            ))}
-          </VerticalTimeline>
-        </div>
+  return (
+    <section id="experience" className="py-10 flex flex-col gap-10" style={{ perspective: 1200 }}>
+      <motion.div
+        key={`experience-head-${language}`}
+        initial={{ opacity: 0, x: -15 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col gap-2"
+      >
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#915eff] font-bold">
+          {t('experience.subtitle')}
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+          {t('experience.title')}
+        </h2>
+      </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
+        {[0, 1, 2].map((index) => (
+          <ExperienceCard key={`${index}-${language}`} index={index} />
+        ))}
       </div>
     </section>
   );

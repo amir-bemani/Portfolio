@@ -1,83 +1,100 @@
-import Tilt from "react-parallax-tilt";
-import { motion } from "framer-motion";
-import { SpotlightCard } from "./SpotlightCard";
+import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
-const services = [
+const servicesIcons = [
   {
-    title: "Data Science & AI",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
   },
   {
-    title: "Fullstack Engineering",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
   },
   {
-    title: "Deep Learning",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
   },
   {
-    title: "Health Tech Solutions",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
   },
 ];
 
-const ServiceCard = ({ index, title, icon }: { index: number; title: string; icon: string }) => (
-  <Tilt className='xs:w-[280px] w-full mx-auto'>
+const ServiceCard = ({ serviceTitle, icon, index }: { serviceTitle: string; icon: string; index: number }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  return (
     <motion.div
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
+      className="glass-card p-6 flex flex-col items-center justify-center gap-4 text-center group cursor-pointer relative overflow-hidden"
     >
-      <SpotlightCard className="bg-tertiary rounded-[20px] py-5 px-10 min-h-[280px] flex justify-center items-center flex-col border-none">
-        <img
-          src={icon}
-          alt='web-development'
-          className='w-16 h-16 object-contain'
-        />
+      <div 
+        className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 206, 168, 0.12), transparent 60%)`
+        }}
+      />
 
-        <h3 className='text-white text-[20px] font-bold text-center mt-4'>
-          {title}
-        </h3>
-      </SpotlightCard>
+      <div className="w-12 h-12 bg-white/[0.03] rounded-2xl flex items-center justify-center p-3 border border-white/5 group-hover:border-white/10 transition-all duration-300 transform group-hover:scale-105 z-10">
+        <img src={icon} alt={serviceTitle} className="w-full h-full object-contain filter group-hover:brightness-110 transition-all duration-300" />
+      </div>
+      <h3 className="font-bold text-sm md:text-base tracking-tight group-hover:text-accent-gradient transition-all duration-300 z-10">
+        {serviceTitle}
+      </h3>
     </motion.div>
-  </Tilt>
-);
+  );
+};
 
 export const About = () => {
+  const { t, language } = useLanguage();
+
   return (
-    <section id="about" className="py-28 px-6 md:px-16 bg-primary relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="font-mono text-secondary text-[14px] tracking-widest uppercase mb-2">Introduction</p>
-          <h2 className="text-white font-black md:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] tracking-tightest leading-tight">Overview.</h2>
-        </motion.div>
+    <section id="about" className="py-10 flex flex-col gap-10">
+      <motion.div
+        key={`about-head-${language}`}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col gap-2"
+      >
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#915eff] font-bold">
+          {t('about.subtitle')}
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+          {t('about.title')}.
+        </h2>
+      </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
-        >
-          I'm a Data Science M.Sc. student at SRH University of Applied Sciences, Fürth/Nürnberg, specializing in Digital Health.
-          With a strong background in Occupational Health & Safety, I bridge the gap between complex data analysis and robust engineering.
-          I build full-stack applications and ML pipelines using modern tools like React, NestJS, and PyTorch.
-        </motion.p>
+      <motion.p
+        key={`about-desc-${language}`}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-white/70 text-sm md:text-lg max-w-3xl leading-relaxed font-light"
+      >
+        {t('about.description')}
+      </motion.p>
 
-        <div className='mt-20 flex flex-wrap gap-10'>
-          {services.map((service, index) => (
-            <div key={service.title} className="service-card">
-              <ServiceCard index={index} {...service} />
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+        {servicesIcons.map((service, index) => (
+          <ServiceCard 
+            key={`${index}-${language}`} 
+            serviceTitle={t(`about.services.${index}`)} 
+            icon={service.icon} 
+            index={index} 
+          />
+        ))}
       </div>
     </section>
   );
