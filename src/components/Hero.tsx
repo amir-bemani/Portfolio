@@ -23,7 +23,7 @@ export const Hero = () => {
         initial={isMobile ? { opacity: 0, y: 20 } : { rotateY: -60, opacity: 0, scale: 0.95 }}
         animate={{ rotateY: 0, opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="glass-card p-10 md:p-20 max-w-5xl w-full text-center flex flex-col items-center gap-6 z-10 origin-center"
+        className="glass-card p-10 md:p-20 max-w-5xl w-full text-center flex flex-col items-center gap-6 z-10 origin-center opacity-0"
       >
         <div className="flex flex-col gap-1">
           <motion.p 

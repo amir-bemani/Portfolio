@@ -35,7 +35,7 @@ const ServiceCard = ({ serviceTitle, icon, index }: { serviceTitle: string; icon
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass-card p-6 flex flex-col items-center justify-center gap-4 text-center group cursor-pointer relative overflow-hidden"
+      className="glass-card p-6 flex flex-col items-center justify-center gap-4 text-center group cursor-pointer relative overflow-hidden opacity-0"
     >
       <div 
         className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"

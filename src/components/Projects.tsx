@@ -57,7 +57,7 @@ const ProjectCard = ({ projectConfig, index, isMobile }: { projectConfig: any; i
       whileInView={{ opacity: 1, rotateY: 0, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.6, ease: [0.215, 0.610, 0.355, 1.000], delay: index * 0.12 }}
-      className={`glass-card p-6 flex flex-col justify-between items-start gap-4 cursor-pointer relative overflow-hidden group ${projectConfig.gridClass} origin-center`}
+      className={`glass-card p-6 flex flex-col justify-between items-start gap-4 cursor-pointer relative overflow-hidden group ${projectConfig.gridClass} origin-center opacity-0`}
     >
       {/* SpotLight Glow */}
       <div 
