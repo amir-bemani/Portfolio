@@ -122,7 +122,7 @@ export const Navbar = () => {
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             className="fixed inset-0 z-[190] bg-black/60 flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            {NAV_LINKS.map((link, i) => (
+            {NAV_LINKS.filter(link => link.href !== '#contact').map((link, i) => (
               <motion.a
                 key={link.label}
                 href={link.href}
@@ -138,10 +138,14 @@ export const Navbar = () => {
             <motion.a 
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-4 px-6 py-3 rounded-xl bg-[#915eff] text-sm font-semibold text-white shadow-lg shadow-[#915eff]/20"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="mt-6 px-10 py-3.5 rounded-2xl bg-[#915eff] text-base font-extrabold text-white shadow-xl shadow-[#915eff]/30 transform active:scale-95 transition-all text-center w-[65%]"
             >
               {t('navbar.connect')}
             </motion.a>
+
           </motion.div>
         )}
       </AnimatePresence>

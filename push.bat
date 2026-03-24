@@ -1,5 +1,5 @@
 @echo off
 cd /d D:\pr\Portfolio
 git add .
-git commit -m "Fix initial load flicker/FOUC by adding static opacity-0 classes"
+git commit -m "Update mobile navbar: remove duplicate contact link and resize connect button"
 git push origin main
