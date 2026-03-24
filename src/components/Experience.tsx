@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
-const ExperienceCard = ({ index }: { index: number }) => {
+const ExperienceCard = ({ index, isMobile }: { index: number; isMobile: boolean }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
   const { t, language } = useLanguage();
@@ -20,9 +20,9 @@ const ExperienceCard = ({ index }: { index: number }) => {
       key={`${index}-${language}`}
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, rotateY: -35, scale: 0.93, y: 15 }}
+      initial={isMobile ? { opacity: 0, y: 15 } : { opacity: 0, rotateY: -35, scale: 0.93, y: 15 }}
       whileInView={{ opacity: 1, rotateY: 0, scale: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.7, ease: [0.215, 0.610, 0.355, 1.000], delay: index * 0.15 }}
       className="relative flex flex-col gap-2 glass-card p-6 cursor-pointer overflow-hidden group shadow-md origin-center"
     >
@@ -56,6 +56,14 @@ const ExperienceCard = ({ index }: { index: number }) => {
 
 export const Experience = () => {
   const { t, language } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="experience" className="py-10 flex flex-col gap-10" style={{ perspective: 1200 }}>
@@ -76,7 +84,7 @@ export const Experience = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
         {[0, 1, 2].map((index) => (
-          <ExperienceCard key={`${index}-${language}`} index={index} />
+          <ExperienceCard key={`${index}-${language}`} index={index} isMobile={isMobile} />
         ))}
       </div>
     </section>

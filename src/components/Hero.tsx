@@ -1,8 +1,17 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 export const Hero = () => {
   const { t, language } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section className="relative w-full h-[90vh] flex items-center justify-center px-6 overflow-hidden" style={{ perspective: 1200 }}>
@@ -11,9 +20,9 @@ export const Hero = () => {
 
       <motion.div 
         key={language}
-        initial={{ rotateY: -60, opacity: 0, scale: 0.95 }}
-        animate={{ rotateY: 0, opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        initial={isMobile ? { opacity: 0, y: 20 } : { rotateY: -60, opacity: 0, scale: 0.95 }}
+        animate={{ rotateY: 0, opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="glass-card p-10 md:p-20 max-w-5xl w-full text-center flex flex-col items-center gap-6 z-10 origin-center"
       >
         <div className="flex flex-col gap-1">

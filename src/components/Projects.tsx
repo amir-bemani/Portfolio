@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 const PROJECTS_CONFIG = [
@@ -35,7 +35,7 @@ const PROJECTS_CONFIG = [
   }
 ];
 
-const ProjectCard = ({ projectConfig, index }: { projectConfig: any; index: number }) => {
+const ProjectCard = ({ projectConfig, index, isMobile }: { projectConfig: any; index: number; isMobile: boolean }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
@@ -53,10 +53,10 @@ const ProjectCard = ({ projectConfig, index }: { projectConfig: any; index: numb
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, rotateY: -35, scale: 0.93, y: 15 }}
+      initial={isMobile ? { opacity: 0, y: 15 } : { opacity: 0, rotateY: -35, scale: 0.93, y: 15 }}
       whileInView={{ opacity: 1, rotateY: 0, scale: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: [0.215, 0.610, 0.355, 1.000], delay: index * 0.12 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.6, ease: [0.215, 0.610, 0.355, 1.000], delay: index * 0.12 }}
       className={`glass-card p-6 flex flex-col justify-between items-start gap-4 cursor-pointer relative overflow-hidden group ${projectConfig.gridClass} origin-center`}
     >
       {/* SpotLight Glow */}
@@ -99,6 +99,14 @@ const ProjectCard = ({ projectConfig, index }: { projectConfig: any; index: numb
 
 export const Projects = () => {
   const { t, language } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="projects" className="py-10 flex flex-col gap-10" style={{ perspective: 1200 }}>
@@ -120,7 +128,7 @@ export const Projects = () => {
       <motion.p
         key={`projects-desc-${language}`}
         initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className="text-white/70 text-sm md:text-lg max-w-3xl leading-relaxed font-light"
       >
@@ -129,7 +137,7 @@ export const Projects = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-6 gap-5 mt-4">
         {PROJECTS_CONFIG.map((project, index) => (
-          <ProjectCard key={`${index}-${language}`} projectConfig={project} index={index} />
+          <ProjectCard key={`${index}-${language}`} projectConfig={project} index={index} isMobile={isMobile} />
         ))}
       </div>
     </section>
