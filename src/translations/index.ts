@@ -5,6 +5,7 @@ export const translations: any = {
       skills: "Skills",
       work: "Work",
       experience: "Experience",
+      education: "Education",
       contact: "Contact",
       connect: "Get in Touch"
     },
@@ -18,7 +19,7 @@ export const translations: any = {
     about: {
       title: "Overview",
       subtitle: "Introduction",
-      description: "I am a versatile Data Scientist and Fullstack Developer with a background in digital health modeling and smart platform engineering. I focus on bridging highly modular machine learning architectures with efficient front-end layers to solve industry-scalable issues.",
+      description: "I am a Data Scientist & AI Engineer with a background in digital health modeling and smart platform engineering. I focus on bridging highly modular machine learning architectures with efficient front-end layers to solve industry-scalable issues.",
       services: [
         "Data Science & AI",
         "Fullstack Engineering",
@@ -90,6 +91,24 @@ export const translations: any = {
         }
       ]
     },
+    education: {
+      title: "Education.",
+      subtitle: "Academic Background",
+      items: [
+        {
+          degree: 'M.Sc. Data Science – Digital Health',
+          institution: 'SRH University of Applied Sciences',
+          location: 'Nürnberg, Germany',
+          period: '2024 – Present'
+        },
+        {
+          degree: 'B.Sc. Occupational Health & Safety',
+          institution: 'Shahid Beheshti University of Medical Sciences',
+          location: 'Tehran, Iran',
+          period: '2017 – 2021'
+        }
+      ]
+    },
     contact: {
       title: "Contact.",
       subtitle: "Get in Touch",
@@ -102,6 +121,7 @@ export const translations: any = {
       skills: "Skills",
       work: "Projekte",
       experience: "Erfahrung",
+      education: "Ausbildung",
       contact: "Kontakt",
       connect: "Kontakt aufnehmen"
     },
@@ -115,7 +135,7 @@ export const translations: any = {
     about: {
       title: "Übersicht",
       subtitle: "Einführung",
-      description: "Ich bin ein vielseitiger Data Scientist und Fullstack-Entwickler mit Hintergrund in digitaler Gesundheitsmodellierung und Smart-Platform-Engineering. Ich konzentriere mich darauf, hochmodulare Machine-Learning-Architekturen mit effizienten Front-End-Schichten zu verbinden, um industriell skalierbare Probleme zu lösen.",
+      description: "Ich bin ein Data Scientist & KI-Ingenieur mit Hintergrund in digitaler Gesundheitsmodellierung und Smart-Platform-Engineering. Ich konzentriere mich darauf, hochmodulare Machine-Learning-Architekturen mit effizienten Front-End-Schichten zu verbinden, um industriell skalierbare Probleme zu lösen.",
       services: [
         "Data Science & KI",
         "Fullstack-Entwicklung",
@@ -184,6 +204,24 @@ export const translations: any = {
             'Unterstützung bei der Umsetzung von Hygiene- und Sicherheitsprotokollen im Krankenhausumfeld.',
             'Assistenz bei Risikobewertungen und Compliance-Überwachung nach Gesundheitsvorschriften.',
           ]
+        }
+      ]
+    },
+    education: {
+      title: "Ausbildung.",
+      subtitle: "Akademischer Hintergrund",
+      items: [
+        {
+          degree: 'M.Sc. Data Science – Digital Health',
+          institution: 'SRH University of Applied Sciences',
+          location: 'Nürnberg, Deutschland',
+          period: '2024 – Heute'
+        },
+        {
+          degree: 'B.Sc. Occupational Health & Safety',
+          institution: 'Shahid Beheshti University of Medical Sciences',
+          location: 'Teheran, Iran',
+          period: '2017 – 2021'
         }
       ]
     },
