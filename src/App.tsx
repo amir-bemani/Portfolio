@@ -3,10 +3,10 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Experience } from './components/Experience';
+import { Education } from './components/Education';
 import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { ParticlesBackground } from './components/ParticlesBackground';
-
 function App() {
   return (
     <div className="relative min-h-screen text-white overflow-x-hidden selection:bg-[#915eff] selection:text-white">
@@ -14,7 +14,6 @@ function App() {
       <div className="ambient-bg" />
       <div className="grid-overlay" />
       <ParticlesBackground />
-
       <Navbar />
       
       <main className="flex flex-col gap-20 py-10">
@@ -23,11 +22,11 @@ function App() {
           <About />
           <Skills />
           <Experience />
+          <Education />
           <Projects />
           <Contact />
         </div>
       </main>
-
       <footer className="py-12 mt-20 border-t border-white/5 bg-black/40 backdrop-blur-md">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <div className="flex flex-col gap-1">
@@ -35,7 +34,7 @@ function App() {
               © {new Date().getFullYear()} Amirhossein Bemani Vandish
             </p>
             <p className="font-mono text-xs text-white/30 tracking-widest uppercase">
-              Data Science · Fullstack Engineering
+              Data Science · AI Engineering
             </p>
           </div>
           
@@ -54,6 +53,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
-
