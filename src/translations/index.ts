@@ -12,14 +12,14 @@ export const translations: any = {
     hero: {
       role: "Data Science & AI Engineering",
       intro: "Hi, I'm",
-      description: "I develop intelligent systems, bridging deep learning models and high-performance web architectures to solve complex data challenges.",
+      description: "I build intelligent systems that combine machine learning with modern web technologies to solve real-world data challenges.",
       btn_projects: "View Projects",
       btn_contact: "Get in Touch"
     },
     about: {
       title: "Overview",
       subtitle: "Introduction",
-      description: "I am a Data Scientist & AI Engineer with a background in digital health modeling and smart platform engineering. I focus on bridging highly modular machine learning architectures with efficient front-end layers to solve industry-scalable issues.",
+      description: "I am a Data Scientist and AI Engineer currently pursuing my M.Sc. in Data Science – Digital Health at SRH University of Applied Sciences in Nuremberg. I enjoy building end-to-end solutions that connect machine learning models with clean, efficient front-end interfaces.",
       services: [
         "Data Science & AI",
         "Fullstack Engineering",
@@ -30,28 +30,28 @@ export const translations: any = {
     projects: {
       title: "Showcases",
       subtitle: "Portfolios",
-      description: "Static workflows linked back to absolute datasets ensuring transparent visual weight distribution across model tiers.",
+      description: "A selection of projects covering machine learning, computer vision, web development, and data analysis.",
       btn_view: "View Repository",
       items: [
         {
           name: "Safety Helmet Detection",
-          description: "Real-time computer vision system utilizing YOLOv8 for safety compliance. Bypasses standard hardware loops to ingest multi-source live monitors reliably."
+          description: "Real-time computer vision system utilizing YOLOv8 for safety compliance monitoring on construction sites."
         },
         {
           name: "Heart Disease Risk Prediction",
-          description: "Comparative model training analysis (Logistic Regression, KNN, SVM) on UCI Cardiac datasets archiving accurate diagnostic trend distributions."
+          description: "Machine learning classification models (Logistic Regression, KNN, SVM) trained on UCI cardiac datasets to predict heart disease risk."
         },
         {
           name: "Dönerhaus Nürnberg",
-          description: "Multi-layered Next.js restaurant ecosystem factoring in digital QR loyalty passes, CRM dashboards, and optimized marketing static pipelines."
+          description: "Full-stack restaurant web application built with Next.js, featuring digital QR loyalty passes, CRM dashboard, and optimized marketing pages."
         },
         {
           name: "Medical Dataset Diagnostics",
-          description: "In-depth explorative data analysis (EDA) framing clinical patient metric analytics and health benchmark trend forecast dashboards."
+          description: "Exploratory data analysis (EDA) on clinical patient datasets, including health metric visualizations and trend forecast dashboards."
         },
         {
-          name: "OSHA incident Analysis",
-          description: "Deep audit of high-rise construction workplace site failure trends supporting predictive hazard mitigation auditing and dynamic reporting."
+          name: "OSHA Incident Analysis",
+          description: "Data-driven audit of workplace incident trends on construction sites, supporting predictive hazard mitigation and reporting."
         }
       ]
     },
@@ -99,20 +99,20 @@ export const translations: any = {
           degree: 'M.Sc. Data Science – Digital Health',
           institution: 'SRH University of Applied Sciences',
           location: 'Nürnberg, Germany',
-          period: '2024 – Present'
+          period: 'Oct 2024 – Present'
         },
         {
           degree: 'B.Sc. Occupational Health & Safety',
           institution: 'Shahid Beheshti University of Medical Sciences',
           location: 'Tehran, Iran',
-          period: '2017 – 2021'
+          period: 'Sep 2017 – Jul 2021'
         }
       ]
     },
     contact: {
       title: "Contact.",
       subtitle: "Get in Touch",
-      description: "I am open to Data Science consulting, full-stack pipeline integration roles, and industry-scalable platform modeling."
+      description: "I am currently open to Data Science, AI Engineering, and full-stack development roles. Feel free to reach out."
     }
   },
   de: {
@@ -128,14 +128,14 @@ export const translations: any = {
     hero: {
       role: "Data Science & KI-Entwicklung",
       intro: "Hallo, ich bin",
-      description: "Ich entwickle intelligente Systeme und verbinde Deep-Learning-Modelle mit hochperformanten Webarchitekturen, um komplexe Daten-Herausforderungen zu lösen.",
+      description: "Ich entwickle intelligente Systeme, die maschinelles Lernen mit modernen Webtechnologien verbinden, um reale Datenprobleme zu lösen.",
       btn_projects: "Projekte ansehen",
       btn_contact: "Kontakt aufnehmen"
     },
     about: {
       title: "Übersicht",
       subtitle: "Einführung",
-      description: "Ich bin ein Data Scientist & KI-Ingenieur mit Hintergrund in digitaler Gesundheitsmodellierung und Smart-Platform-Engineering. Ich konzentriere mich darauf, hochmodulare Machine-Learning-Architekturen mit effizienten Front-End-Schichten zu verbinden, um industriell skalierbare Probleme zu lösen.",
+      description: "Ich bin Data Scientist und KI-Ingenieur und studiere derzeit M.Sc. Data Science – Digital Health an der SRH Hochschule für Angewandte Wissenschaften in Nürnberg. Ich entwickle gerne End-to-End-Lösungen, die Machine-Learning-Modelle mit modernen Front-End-Interfaces verbinden.",
       services: [
         "Data Science & KI",
         "Fullstack-Entwicklung",
@@ -146,28 +146,28 @@ export const translations: any = {
     projects: {
       title: "Präsentationen",
       subtitle: "Portfolios",
-      description: "Statische Workflows, die mit absoluten Datensätzen verknüpft sind, um eine transparente Verteilung der visuellen Gewichtung über die Modellstufen hinweg zu gewährleisten.",
+      description: "Eine Auswahl von Projekten aus den Bereichen Machine Learning, Computer Vision, Webentwicklung und Datenanalyse.",
       btn_view: "Repository ansehen",
       items: [
         {
           name: "Sicherheitshelm-Erkennung",
-          description: "Echtzeit-Computer-Vision-System mit YOLOv8 für die Arbeitssicherheit. Umgeht Hardware-Overheads, um Live-Streams aus mehreren Quellen zuverlässig zu verarbeiten."
+          description: "Echtzeit-Computer-Vision-System mit YOLOv8 zur Überwachung der Arbeitssicherheit auf Baustellen."
         },
         {
           name: "Herzerkrankungs-Risikovorhersage",
-          description: "Vergleichende Modelltrainingsanalyse (Logistic Regression, KNN, SVM) auf Herzdatensätzen zur Archivierung genauer diagnostischer Trendverteilungen."
+          description: "Machine-Learning-Klassifikationsmodelle (Logistic Regression, KNN, SVM) trainiert auf UCI-Herzdatensätzen zur Vorhersage von Herzerkrankungsrisiken."
         },
         {
           name: "Dönerhaus Nürnberg",
-          description: "Mehrschichtiges Next.js-Gastronomie-Ökosystem unter Berücksichtigung digitaler QR-Kundenkarten, CRM-Dashboards und optimierter statischer Marketing-Pipelines."
+          description: "Full-Stack-Restaurantwebanwendung mit Next.js, digitalen QR-Kundenkarten, CRM-Dashboard und optimierten Marketingseiten."
         },
         {
           name: "Medizinische Datensatz-Diagnostik",
-          description: "Eingehende explorative Datenanalyse (EDA), die klinische Patientenmetrik-Analysen und Dashboards für Gesundheitstrendprognosen umfasst."
+          description: "Explorative Datenanalyse (EDA) klinischer Patientendatensätze mit Gesundheitsmetrik-Visualisierungen und Trendprognose-Dashboards."
         },
         {
           name: "OSHA-Vorfall-Analyse",
-          description: "Umfassendes Audit von Ausfalltrends auf Baustellen zur Unterstützung von prädiktiven Gefahrenminderungs-Audits und dynamischer Berichterstattung."
+          description: "Datengestützte Auswertung von Arbeitsunfall-Trends auf Baustellen zur Unterstützung prädiktiver Gefahrenminimierung und Berichterstattung."
         }
       ]
     },
@@ -215,20 +215,20 @@ export const translations: any = {
           degree: 'M.Sc. Data Science – Digital Health',
           institution: 'SRH University of Applied Sciences',
           location: 'Nürnberg, Deutschland',
-          period: '2024 – Heute'
+          period: 'Okt 2024 – Heute'
         },
         {
           degree: 'B.Sc. Occupational Health & Safety',
           institution: 'Shahid Beheshti University of Medical Sciences',
           location: 'Teheran, Iran',
-          period: '2017 – 2021'
+          period: 'Sep 2017 – Jul 2021'
         }
       ]
     },
     contact: {
       title: "Kontakt.",
       subtitle: "Kontakt aufnehmen",
-      description: "Ich bin offen für Data-Science-Beratung, Full-Stack-Pipeline-Integrationsrollen und industriell skalierbare Plattformmodellierung."
+      description: "Ich bin derzeit offen für Positionen in Data Science, KI-Engineering und Full-Stack-Entwicklung. Gerne können Sie mich kontaktieren."
     }
   }
 };
