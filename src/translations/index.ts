@@ -99,7 +99,7 @@ export const translations: any = {
           degree: 'M.Sc. Data Science – Digital Health',
           institution: 'SRH University of Applied Sciences',
           location: 'Nürnberg, Germany',
-          period: 'Oct 2024 – Present'
+          period: 'Apr 2025 – Present'
         },
         {
           degree: 'B.Sc. Occupational Health & Safety',
@@ -215,7 +215,7 @@ export const translations: any = {
           degree: 'M.Sc. Data Science – Digital Health',
           institution: 'SRH University of Applied Sciences',
           location: 'Nürnberg, Deutschland',
-          period: 'Okt 2024 – Heute'
+                    period: 'Apr 2025 – Heute'
         },
         {
           degree: 'B.Sc. Occupational Health & Safety',
